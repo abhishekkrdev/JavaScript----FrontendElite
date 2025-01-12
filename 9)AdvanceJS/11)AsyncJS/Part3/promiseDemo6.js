@@ -7,18 +7,17 @@ function download(url) {
             res(data);
         }, 3000);
     });
-}   
-
+}
 
 function writeFile(data, fileName) {
     return new Promise(function exec(res, rej) {
         console.log("Writing", data, " to file");
         setTimeout(() => {
             console.log("Writing to file ", fileName, " is done");
-            let status="Success";
+            let status = "Success";
             res(status);
         }, 2000);
-    })
+    });
 }
 
 function upload(fileName, url, callback) {
@@ -30,7 +29,7 @@ function upload(fileName, url, callback) {
             let uploadStatus = "Success";
             rej(uploadStatus);
         }, 3000);
-    })
+    });
 }
 
 // This is parallel execution
@@ -49,7 +48,7 @@ function upload(fileName, url, callback) {
 //     console.log("Upload status is", value);
 // })
 
-// download -> waiting for downloading to complete -> we execute function f -> f calls writefile -> 
+// download -> waiting for downloading to complete -> we execute function f -> f calls writefile ->
 // when file writing is done p2 is resolved -> then g is executed -> g calls upload -> when upload is done
 // p3 is resolved -> then h is executed
 // const p2 = download("https://www.example.com")
@@ -71,17 +70,17 @@ function upload(fileName, url, callback) {
 
 // .then chaining
 download("https://www.example.com")
-.then(function f(value) {
-    console.log("Downloaded data is", value);
-    return writeFile(value, "file.txt");
-})
-.then(function g(value) {
-    console.log("file written", value);
-    return upload(value, "https://www.example1.com");
-})
-.then(function h(value) {
-    console.log("file uploaded", value);
-})
-.catch(function i(value) {
-    console.log("Error occured", value);
-})
+    .then(function f(value) {
+        console.log("Downloaded data is", value);
+        return writeFile(value, "file.txt");
+    })
+    .then(function g(value) {
+        console.log("file written", value);
+        return upload(value, "https://www.example1.com");
+    })
+    .then(function h(value) {
+        console.log("file uploaded", value);
+    })
+    .catch(function i(value) {
+        console.log("Error occured", value);
+    });

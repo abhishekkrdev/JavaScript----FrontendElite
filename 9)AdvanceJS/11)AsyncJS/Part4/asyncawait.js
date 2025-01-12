@@ -7,18 +7,17 @@ function download(url) {
             res(data);
         }, 3000);
     });
-}   
-
+}
 
 function writeFile(data, fileName) {
     return new Promise(function exec(res, rej) {
         console.log("Writing", data, " to file");
         setTimeout(() => {
             console.log("Writing to file ", fileName, " is done");
-            let status="Success";
+            let status = "Success";
             rej(status);
         }, 2000);
-    })
+    });
 }
 
 function upload(fileName, url) {
@@ -30,7 +29,7 @@ function upload(fileName, url) {
             let uploadStatus = "Success";
             res(uploadStatus);
         }, 3000);
-    })
+    });
 }
 
 async function exec() {
@@ -39,20 +38,20 @@ async function exec() {
 
         const downloadedData = await download("https://www.example.com");
         console.log("Data downloaded is", downloadedData);
-    
+
         const fileResponse = await writeFile(downloadedData, "example.txt");
         console.log("File write status", fileResponse);
-    
-        const uploadStatus = await upload("example.txt", "https://www.example.com");
+
+        const uploadStatus = await upload(
+            "example.txt",
+            "https://www.example.com"
+        );
         console.log("Upload status", uploadStatus);
-    
-        
-    
+
         return uploadStatus;
     } catch (e) {
         console.log("Something went wrong");
     }
-    
 }
 
 exec().then((v) => console.log("exec done", v));

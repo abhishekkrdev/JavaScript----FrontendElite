@@ -7,18 +7,17 @@ function download(url) {
             res(data);
         }, 3000);
     });
-}   
-
+}
 
 function writeFile(data, fileName) {
     return new Promise(function exec(res, rej) {
         console.log("Writing", data, " to file");
         setTimeout(() => {
             console.log("Writing to file ", fileName, " is done");
-            let status="Success";
+            let status = "Success";
             res(status);
         }, 2000);
-    })
+    });
 }
 
 function upload(fileName, url) {
@@ -30,7 +29,7 @@ function upload(fileName, url) {
             let uploadStatus = "Success";
             res(uploadStatus);
         }, 3000);
-    })
+    });
 }
 
 function* exec() {
@@ -47,11 +46,14 @@ function* exec() {
 
     const d2 = yield download("https://www.example.com");
     console.log("Data downloaded is", d2);
-    
+
     const f2 = yield writeFile(d2, "example2.txt");
     console.log("File write status", f2);
 
-    const uploadStatus2 = yield upload("example2.txt", "https://www.example.com");
+    const uploadStatus2 = yield upload(
+        "example2.txt",
+        "https://www.example.com"
+    );
     console.log("Upload status", uploadStatus2);
 
     return uploadStatus;
@@ -64,8 +66,7 @@ console.log("ft is", ft);
 ft.value.then(function doAfterReceiving(value) {
     console.log("Calling do after receiving when download is finished", value);
 
-   const future = it.next(value); // interesting
-   if(future.done) return; // if there is no more to yield
-   future.value.then(doAfterReceiving);
-
-})
+    const future = it.next(value); // interesting
+    if (future.done) return; // if there is no more to yield
+    future.value.then(doAfterReceiving);
+});
