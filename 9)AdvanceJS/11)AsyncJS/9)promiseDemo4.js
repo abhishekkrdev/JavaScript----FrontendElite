@@ -5,6 +5,7 @@ const p1 = new Promise((res, rej) => {
         res(100); // pending->fulfilled ; undefined -> 100
     }, 500);
 });
+
 p1.then(
     function a() {
         console.log("a");
@@ -15,7 +16,8 @@ p1.then(
 );
 setTimeout(function timerCB() {
     console.log("timer 1 done");
-}, 2000); // timer of 1 sec
+}, 2000); // timer of 2 sec
+
 const pr = new Promise(function exec(res, rej) {
     console.log("Executor callback triggered by Promise constructor");
     setTimeout(function prCB() {
