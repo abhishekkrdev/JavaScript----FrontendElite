@@ -12,3 +12,7 @@ console.log(it.next());
 console.log("out");
 console.log(it.next());
 console.log("out");
+console.log(it.next());
+console.log("out");
+console.log(it.next());
+console.log("out");
