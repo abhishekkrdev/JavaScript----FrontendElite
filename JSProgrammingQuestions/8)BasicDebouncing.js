@@ -14,3 +14,15 @@ function debounce(fn, delay) {
         }, delay);
     };
 }
+
+const fn = debounce((message) => {
+    console.log(message);
+}, 300);
+
+// Simulate rapid function calls
+fn("Hello");
+fn("Hello, World!");
+fn("Debounced!"); // Only this should log after 300ms
+setTimeout(() => {
+    fn("Debounced twice");
+}, 400);

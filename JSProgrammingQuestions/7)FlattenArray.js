@@ -1,4 +1,4 @@
-//Solution
+// Best Solution
 // Recursive Approach without Depth
 const flattenRecursive = (arr) => {
     if (!Array.isArray(arr)) {
@@ -14,6 +14,18 @@ const flattenRecursive = (arr) => {
     }
     return result;
 };
+
+const flattenRecursiveReduce = (arr) => {
+    if (!Array.isArray(arr)) {
+        throw new Error("Input must be an array");
+    }
+    return arr.reduce(
+        (acc, ele) =>
+            acc.concat(Array.isArray(ele) ? flattenRecursive(ele) : ele),
+        []
+    );
+};
+
 const resultRecursive = flattenRecursive([
     [[[0]], [1]],
     [[[2], [3]]],
@@ -22,6 +34,7 @@ const resultRecursive = flattenRecursive([
 console.log(resultRecursive, "Recursive Result");
 
 // Iterative Approach without Depth
+// Mimic Recursion Stack
 const flattenIterative = (arr) => {
     if (!Array.isArray(arr)) {
         throw new Error("Input must be an array");
