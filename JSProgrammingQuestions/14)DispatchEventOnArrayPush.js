@@ -1,0 +1,4 @@
+
+Array.prototype.push = function(){
+    
+}
