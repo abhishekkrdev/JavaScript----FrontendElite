@@ -1,6 +1,7 @@
 Array.prototype.slice = function (start, end) {
     const length = this.length;
 
+    // Normalise Start And End
     if (start === undefined) {
         start = 0;
     } else if (start < 0) {
