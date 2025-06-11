@@ -1,4 +1,4 @@
-const debounce = (fn, delay, option = { leading: true, trailing: true }) => {
+const debounce = (fn, delay, option = { leading: false, trailing: true }) => {
     let timeout = null;
     let isLeadingInvoked = false;
 

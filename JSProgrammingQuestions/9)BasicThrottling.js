@@ -19,6 +19,7 @@ function throttle(func, delay) {
 const throttleFnTimeBased = (fn, delay) => {
     let lastExecuted = null;
     let timerId = null;
+
     return function (...args) {
         const context = this;
         if (!lastExecuted) {
